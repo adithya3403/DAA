@@ -1,2 +1,2 @@
 # DAA
-daily codes storage
+daily codes
