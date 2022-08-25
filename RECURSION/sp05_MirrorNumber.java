@@ -4,7 +4,7 @@
 
 import java.util.*;
 
-public class mirrorNumber {
+public class sp05_MirrorNumber {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
