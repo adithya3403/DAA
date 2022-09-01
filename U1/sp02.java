@@ -4,7 +4,6 @@
 // input 5 output 8
 
 import java.util.Scanner;
-
 public class sp02 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -12,7 +11,6 @@ public class sp02 {
         System.out.println(fun(n + 1));
         sc.close();
     }
-
     public static int fun(int n) {
         if (n <= 1)
             return n;
