@@ -3,7 +3,6 @@
 // input racing output gnicar
 
 import java.util.*;
-
 public class sp03 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -12,15 +11,12 @@ public class sp03 {
         System.out.println(rev(str1));
         sc.close();
     }
-
     public static char[] rev(char[] str) {
         helper(str, 0, str.length - 1);
         return str;
     }
-
     public static void helper(char[] str, int left, int right) {
-        if (left >= right)
-            return;
+        if (left >= right) return;
         char x = str[left];
         str[left] = str[right];
         str[right] = x;
