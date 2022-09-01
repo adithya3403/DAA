@@ -3,7 +3,6 @@
 // input 2 5 6 output 31
 
 import java.util.Scanner;
-
 public class sp01 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -13,7 +12,6 @@ public class sp01 {
         System.out.println(fun(a, b, c));
         sc.close();
     }
-
     public static int fun(int a, int b, int c) {
         if (c == 2) {
             return b;
