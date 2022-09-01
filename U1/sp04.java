@@ -19,7 +19,6 @@
 // We got a cycle, so return "false"
 
 import java.util.*;
-
 public class sp04 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -28,7 +27,6 @@ public class sp04 {
         // System.out.println(isHappyNumber2(n));
         sc.close();
     }
-
     public static boolean isHappyNumber2(int n) {
         int slow = sumOfSquares(n);
         int fast = sumOfSquares(sumOfSquares(n));
@@ -41,7 +39,6 @@ public class sp04 {
             fast = sumOfSquares(sumOfSquares(fast));
         }
     }
-
     public static boolean isHappyNumber(int n) {
         HashSet<Integer> set = new HashSet<>();
         while (true) {
@@ -54,7 +51,6 @@ public class sp04 {
             n = sum;
         }
     }
-
     public static int sumOfSquares(int n) {
         int total = 0;
         while (n > 0) {
@@ -63,5 +59,4 @@ public class sp04 {
         }
         return total;
     }
-
 }
