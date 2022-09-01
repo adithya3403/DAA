@@ -21,7 +21,6 @@
 // 0.125000
 
 import java.util.*;
-
 public class sp08 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -30,7 +29,6 @@ public class sp08 {
         System.out.format("%.6f", findPow(x, n));
         sc.close();
     }
-
     public static float findPow(int x, int n) {
         if (n == 0) return 1;
         if (n < 0) return 1 / findPow(x, -n);
