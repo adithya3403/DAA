@@ -3,7 +3,6 @@
 // input 2 output [11, 69, 88, 96]
 
 import java.util.*;
-
 public class sp06 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -11,7 +10,6 @@ public class sp06 {
         System.out.println(uTurnNums(n));
         sc.close();
     }
-
     public static Set<String> uTurnNums(int n) {
         Set<String> res = new TreeSet<>();
         if (n == 0) {
