@@ -30,27 +30,42 @@ public class smallestGoldBox {
         int m = sc.nextInt();
         int n = sc.nextInt();
         int[][] arr = new int[m][n];
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++)
                 arr[i][j] = sc.nextInt();
-            }
-        }
         System.out.println(findCommonEle(arr));
         sc.close();
     }
 
     public static int findCommonEle(int[][] arr) {
-        HashMap<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length; j++) {
-                map.put(arr[i][j], map.getOrDefault(arr[i][j], 0) + 1);
+        int m = arr.length;
+        int n = arr[0].length;
+        for (int i = 0; i < n; i++) {
+            boolean flag = true;
+            int x = arr[0][i];
+            for (int j = 1; j < m; j++) {
+                if (!binSearch(arr[j], x)) {
+                    flag = false;
+                    break;
+                }
             }
+            if (flag == true)
+                return x;
         }
-        int min = Integer.MAX_VALUE;
-        for (int key : map.keySet()) {
-            if (map.get(key) == arr.length)
-                min = Math.min(min, key);
+        return -1;
+    }
+
+    public static boolean binSearch(int[] arr, int x) {
+        int l = 0, r = arr.length - 1;
+        while (l <= r) {
+            int mid = l + (r - l) / 2;
+            if (arr[mid] == x)
+                return true;
+            else if (arr[mid] > x)
+                r = mid - 1;
+            else
+                l = mid + 1;
         }
-        return min == Integer.MAX_VALUE ? -1 : min;
+        return false;
     }
 }
