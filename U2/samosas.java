@@ -17,10 +17,7 @@ public class samosas {
         int l = 0, r = maximum(box);
         while (l < r) {
             int mid = (l + r) / 2;
-            int time = 0;
-            for (int i : box)
-                time += (i + mid - 1) / mid;
-            if (time <= t)
+            if (isPossible(box, t, mid))
                 r = mid;
             else
                 l = mid + 1;
@@ -28,11 +25,18 @@ public class samosas {
         return l;
     }
 
-    static int maximum(int[] arr) {
-        int max = arr[0];
-        for (int i : arr)
-            if (i > max)
-                max = i;
+    static boolean isPossible(int[] box, int t, int speed) {
+        int time = 0;
+        for (int i = 0; i < box.length; i++)
+            time += ((box[i] - 1) / speed) + 1;
+        return time <= t;
+    }
+
+    static int maximum(int[] box) {
+        int max = box[0];
+        for (int i = 1; i < box.length; i++)
+            if (box[i] > max)
+                max = box[i];
         return max;
     }
 }
