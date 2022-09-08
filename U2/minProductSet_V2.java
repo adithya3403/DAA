@@ -1,5 +1,3 @@
-// grade: 87.5 / 100
-
 import java.util.*;
 
 public class minProductSet_V2 {
@@ -14,14 +12,14 @@ public class minProductSet_V2 {
         sc.close();
     }
 
-    static int minProduct(int[] arr) {
+    static long minProduct(int[] arr) {
         int n = arr.length;
         if (n == 1)
             return arr[0];
         int negmax = Integer.MIN_VALUE;
         int posmin = Integer.MAX_VALUE;
         int cneg = 0, czero = 0;
-        int prod = 1;
+        long prod = 1;
         for (int i : arr) {
             if (i == 0) {
                 czero++;
@@ -42,6 +40,6 @@ public class minProductSet_V2 {
             return posmin;
         if (cneg % 2 == 0 && cneg != 0)
             prod = prod / negmax;
-        return prod;
+        return (long) prod;
     }
 }
