@@ -18,27 +18,26 @@ public class knapsack {
     }
 
     static long maxCost(int[] cost, int[] quantity, int n, int c) {
-        int[] ratio = new int[n];
-        for (int i = 0; i < n; i++)
-            ratio[i] = cost[i] / quantity[i];
-        int maxC = 0, maxR = 0, maxRI = 0, totalQ = 0;
-        while (totalQ < c) {
-            maxR = 0;
-            maxRI = 0;
-            for (int i = 0; i < n; i++) {
-                if (ratio[i] > maxR) {
-                    maxR = ratio[i];
-                    maxRI = i;
-                }
+        int[][] arr = new int[n][2];
+        for (int i = 0; i < n; i++) {
+            arr[i][0] = cost[i];
+            arr[i][1] = quantity[i];
+        }
+        Arrays.sort(arr, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] a, int[] b) {
+                return (b[0] / b[1]) - (a[0] / a[1]);
             }
-            if (totalQ + quantity[maxRI] <= c) {
-                totalQ += quantity[maxRI];
-                maxC += cost[maxRI];
+        });
+        long maxC = 0;
+        for (int i = 0; i < n; i++) {
+            if (c >= arr[i][1]) {
+                maxC += arr[i][0];
+                c = c - arr[i][1];
             } else {
-                maxC += (c - totalQ) * ratio[maxRI];
-                totalQ = c;
+                maxC += (arr[i][0] / arr[i][1]) * c;
+                break;
             }
-            ratio[maxRI] = 0;
         }
         return maxC;
     }
