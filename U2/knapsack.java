@@ -1,15 +1,15 @@
 import java.util.*;
 
-public class knapsack {
-    static class ItemValue {
-        int value, weight;
+class ItemValue {
+    int value, weight;
 
-        public ItemValue(int value, int weight) {
-            this.value = value;
-            this.weight = weight;
-        }
+    public ItemValue(int value, int weight) {
+        this.value = value;
+        this.weight = weight;
     }
+}
 
+public class knapsack {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int size = sc.nextInt();
