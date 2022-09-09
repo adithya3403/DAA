@@ -1,44 +1,58 @@
-// grade: 50 / 100 (1, 2, 3 test cases passed)
-
 import java.util.*;
 
 public class knapsack {
+    static class ItemValue {
+        int value, weight;
+
+        public ItemValue(int value, int weight) {
+            this.value = value;
+            this.weight = weight;
+        }
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int C = sc.nextInt();
-        int[] cost = new int[N];
-        int[] quantity = new int[N];
-        for (int i = 0; i < N; i++) {
-            cost[i] = sc.nextInt();
-            quantity[i] = sc.nextInt();
+        int size = sc.nextInt();
+        int cap = sc.nextInt();
+        ItemValue arr[] = new ItemValue[size];
+        for (int i = 0; i < size; i++) {
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            arr[i] = new ItemValue(a, b);
         }
-        System.out.println(maxCost(cost, quantity, N, C));
+        System.out.println(getMaxValue(arr, cap));
         sc.close();
     }
 
-    static long maxCost(int[] cost, int[] quantity, int n, int c) {
-        int[][] arr = new int[n][2];
-        for (int i = 0; i < n; i++) {
-            arr[i][0] = cost[i];
-            arr[i][1] = quantity[i];
-        }
-        Arrays.sort(arr, new Comparator<int[]>() {
+    static double getMaxValue(ItemValue arr[], int cap) {
+        Arrays.sort(arr, new Comparator<>() {
             @Override
-            public int compare(int[] a, int[] b) {
-                return (b[0] / b[1]) - (a[0] / a[1]);
+            public int compare(ItemValue o1, ItemValue o2) {
+                double r1 = (double) o1.value / o1.weight;
+                double r2 = (double) o2.value / o2.weight;
+                if (r1 < r2)
+                    return 1;
+                else if (r1 > r2)
+                    return -1;
+                return 0;
             }
         });
-        long maxC = 0;
-        for (int i = 0; i < n; i++) {
-            if (c >= arr[i][1]) {
-                maxC += arr[i][0];
-                c = c - arr[i][1];
+        double totalVal = 0d;
+        for (ItemValue i : arr) {
+            int curVal = (int) i.value;
+            int curWt = (int) i.weight;
+            if (cap - curWt >= 0) {
+                cap = cap - curWt;
+                totalVal += curVal;
+                if (cap == 0)
+                    break;
             } else {
-                maxC += (arr[i][0] / arr[i][1]) * c;
+                double fraction = ((double) cap / (double) curWt);
+                totalVal += (curVal * fraction);
+                cap = (int) (cap - (curWt * fraction));
                 break;
             }
         }
-        return maxC;
+        return totalVal;
     }
 }
