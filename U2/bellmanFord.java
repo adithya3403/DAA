@@ -50,7 +50,7 @@ import java.util.*;
 public class bellmanFord {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        sc.nextInt();
         int l = sc.nextInt();
         int[][] times = new int[l][3];
         for (int i = 0; i < l; i++) {
