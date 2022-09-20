@@ -49,6 +49,8 @@ Sample Output-2:
 
 import java.util.*;
 
+// Structure of BinaryTreeNode for your reference.
+
 class BinaryTreeNode {
     public int data;
     public BinaryTreeNode left, right;
@@ -74,55 +76,13 @@ class Solution {
             for (int i = 0; i < size; i++) {
                 BinaryTreeNode node = q.poll();
                 sum += node.data;
-                if (node.left != null)
+                if (node.left != null && node.left.data != -1)
                     q.add(node.left);
-                if (node.right != null)
+                if (node.right != null && node.right.data != -1)
                     q.add(node.right);
             }
             res.add(sum / size);
         }
         return res;
-    }
-}
-
-public class AvgOfLvlsBT {
-    static BinaryTreeNode root;
-    static BinaryTreeNode temp = root;
-
-    void insert(BinaryTreeNode temp, int key) {
-        if (temp == null) {
-            root = new BinaryTreeNode(key);
-            return;
-        }
-        Queue<BinaryTreeNode> q = new LinkedList<BinaryTreeNode>();
-        q.add(temp);
-        // Do level order traversal until we find
-        // an empty place.
-        while (!q.isEmpty()) {
-            temp = q.peek();
-            q.remove();
-            if (temp.left == null) {
-                temp.left = new BinaryTreeNode(key);
-                break;
-            } else
-                q.add(temp.left);
-            if (temp.right == null) {
-                temp.right = new BinaryTreeNode(key);
-                break;
-            } else
-                q.add(temp.right);
-        }
-    }
-
-    public static void main(String args[]) {
-        Scanner sc = new Scanner(System.in);
-        String str[] = sc.nextLine().split(" ");
-        AvgOfLvlsBT st = new AvgOfLvlsBT();
-        root = new BinaryTreeNode(Integer.parseInt(str[0]));
-        for (int i = 1; i < str.length; i++)
-            st.insert(root, Integer.parseInt(str[i]));
-        Solution sol = new Solution();
-        System.out.println(sol.averageOfLevels(root));
-        sc.close();
     }
 }
