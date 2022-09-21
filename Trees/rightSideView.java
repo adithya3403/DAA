@@ -13,23 +13,23 @@ class BinaryTreeNode {
 
 class Solution {
     public List<Integer> rightSideView(BinaryTreeNode root) {
-        List<Integer> result = new ArrayList<>();
+        List<Integer> res = new ArrayList<>();
         if (root == null)
-            return result;
-        Queue<BinaryTreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        while (!queue.isEmpty()) {
-            int size = queue.size();
+            return res;
+        Queue<BinaryTreeNode> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty()) {
+            int size = q.size();
             for (int i = 0; i < size; i++) {
-                BinaryTreeNode node = queue.poll();
+                BinaryTreeNode node = q.poll();
                 if (i == size - 1)
-                    result.add(node.data);
-                if (node.left != null)
-                    queue.add(node.left);
-                if (node.right != null)
-                    queue.add(node.right);
+                    res.add(node.data);
+                if (node.left != null && node.left.data != -1)
+                    q.add(node.left);
+                if (node.right != null && node.right.data != -1)
+                    q.add(node.right);
             }
         }
-        return result;
+        return res;
     }
 }
