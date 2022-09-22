@@ -56,7 +56,7 @@ class BinaryTreeNode {
     }
 }
 
-class Solution {
+class BalancedTree {
     public boolean isBalanced(BinaryTreeNode root) {
         // Implement Your Code here..
         if (root == null)
