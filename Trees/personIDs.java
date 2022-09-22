@@ -44,18 +44,18 @@ import java.util.*;
 TreeNode for reference
 
 class BinaryTreeNode{
-public int data; 
-public BinaryTreeNode left, right; 
-public BinaryTreeNode(int data){
-this.data = data; 
-left = null; 
-right = null; 
-}
+    public int data; 
+    public BinaryTreeNode left, right; 
+    public BinaryTreeNode(int data){
+        this.data = data; 
+        left = null; 
+        right = null; 
+    }
 }
 
 */
 
-class Solution {
+class personIDs {
     public ArrayList<Integer> getPersonIDs(BinaryTreeNode root) {
         // Implement your code here
         ArrayList<Integer> res = new ArrayList<>();
