@@ -64,7 +64,7 @@ class BinaryTreeNode{
 }
 */
 
-class Solution {
+class avgoflvls2 {
     public List<Double> averageOfLevels(BinaryTreeNode root) {
         // Implement your code here
         List<Double> res = new ArrayList<>();
