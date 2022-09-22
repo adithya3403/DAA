@@ -54,7 +54,7 @@ class BinaryTreeNode {
     }
 }
 
-class Solution {
+class SelfMirror {
     public boolean isSelfMirrorTree(BinaryTreeNode root) {
         // Implement Your Code here..
         if (root == null)
