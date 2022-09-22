@@ -11,7 +11,7 @@ class BinaryTreeNode {
     }
 }
 
-class Solution {
+class maxInEachRowQ {
     public List<Integer> maxInEachRow(BinaryTreeNode root) {
         // Implement Your Code here..
         List<Integer> result = new ArrayList<>();
