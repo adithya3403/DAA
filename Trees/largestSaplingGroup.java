@@ -58,7 +58,7 @@ Sample Output-2:
 
 import java.util.*;
 
-class Solution {
+class largestSaplingGroup {
     void solve(int[][] gridland) {
         // implement your code here.
         int max = 0;
