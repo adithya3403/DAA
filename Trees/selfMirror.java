@@ -43,6 +43,8 @@ false
 
 // TreeNode Structure for Your Reference..
 
+/*
+
 class BinaryTreeNode {
     public int data;
     public BinaryTreeNode left, right;
@@ -53,6 +55,8 @@ class BinaryTreeNode {
         right = null;
     }
 }
+
+*/
 
 class SelfMirror {
     public boolean isSelfMirrorTree(BinaryTreeNode root) {
