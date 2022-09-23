@@ -1,5 +1,6 @@
 import java.util.*;
 
+/*
 class BinaryTreeNode {
     public int data;
     public BinaryTreeNode left, right;
@@ -10,6 +11,7 @@ class BinaryTreeNode {
         right = null;
     }
 }
+*/
 
 class maxInEachRowQ {
     public List<Integer> maxInEachRow(BinaryTreeNode root) {
