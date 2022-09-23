@@ -51,6 +51,7 @@ import java.util.*;
 
 // Structure of BinaryTreeNode for your reference.
 
+/*
 class BinaryTreeNode {
     public int data;
     public BinaryTreeNode left, right;
@@ -61,6 +62,7 @@ class BinaryTreeNode {
         right = null;
     }
 }
+*/
 
 class AvgOfLvlsBT {
     public List<Double> averageOfLevels(BinaryTreeNode root) {
