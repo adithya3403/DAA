@@ -1,5 +1,3 @@
-// Test case 4 : FAILED
-
 /*
 
 Indian Army setup some military-camps, sitauted at random places at LAC in Galwan.
@@ -79,7 +77,8 @@ public class SHIELD {
     }
 
     static void leftB(BondaryOfBTNode root) {
-        if (root == null || root.data == -1 || (root.left == null && root.right == null))
+        if (root == null || root.data == -1
+                || ((root.left == null || root.left.data == -1) && (root.right == null || root.right.data == -1)))
             return;
         res.add(root.data);
         if (root.left == null || root.data == -1)
@@ -89,7 +88,8 @@ public class SHIELD {
     }
 
     static void rightB(BondaryOfBTNode root) {
-        if (root == null || root.data == -1 || (root.left == null && root.right == null))
+        if (root == null || root.data == -1
+                || ((root.left == null || root.left.data == -1) && (root.right == null || root.right.data == -1)))
             return;
         if (root.right == null || root.right.data == -1)
             rightB(root.left);
