@@ -1,49 +1,51 @@
-// /*
+// Test case 4 : FAILED
 
-// Indian Army setup some military-camps, sitauted at random places at LAC in Galwan.
-// There exist a main base camp connected with other base camps as follows:
-// Each military-camp is connected with atmost two other military-camps.
-// Each military-camp will be identified with an unique ID,(an integer).
+/*
 
-// To safeguard all the military-camps, Govt of India planned to setup protective 
-// S.H.I.E.L.D. Govt of India ask your help to build the S.H.I.E.L.D that should 
-// enclose all the militar-camps.
+Indian Army setup some military-camps, sitauted at random places at LAC in Galwan.
+There exist a main base camp connected with other base camps as follows:
+Each military-camp is connected with atmost two other military-camps.
+Each military-camp will be identified with an unique ID,(an integer).
 
-// You are given the IDs of the military-camps as binary tree. 
-// Your task is to find and return the military camp IDs, those are on the edge of 
-// the S.H.I.E.L.D in anti-clockwise order.
+To safeguard all the military-camps, Govt of India planned to setup protective 
+S.H.I.E.L.D. Govt of India ask your help to build the S.H.I.E.L.D that should 
+enclose all the militar-camps.
 
-// Implement the class Solution:
-//    1. public List<Integer> compoundWall(BondaryOfBTNode root): returns a boolean value.
+You are given the IDs of the military-camps as binary tree. 
+Your task is to find and return the military camp IDs, those are on the edge of 
+the S.H.I.E.L.D in anti-clockwise order.
 
-// NOTE:
-// '-1' in the IDs indicates no military-camp (NULL).
+Implement the class Solution:
+   1. public List<Integer> compoundWall(BondaryOfBTNode root): returns a boolean value.
 
-// Input Format:
-// -------------
-// space separated integers, military-camp IDs.
+NOTE:
+'-1' in the IDs indicates no military-camp (NULL).
 
-// Output Format:
-// --------------
-// Print all the military-camp IDs, which are at the edge of S.H.I.E.L.D.
+Input Format:
+-------------
+space separated integers, military-camp IDs.
 
-// Sample Input-1:
-// ---------------
-// 5 2 4 7 9 8 1
+Output Format:
+--------------
+Print all the military-camp IDs, which are at the edge of S.H.I.E.L.D.
 
-// Sample Output-1:
-// ----------------
-// [5, 2, 7, 9, 8, 1, 4]
+Sample Input-1:
+---------------
+5 2 4 7 9 8 1
 
-// Sample Input-2:
-// ---------------
-// 11 2 13 4 25 6 -1 -1 -1 7 18 9 10
+Sample Output-1:
+----------------
+[5, 2, 7, 9, 8, 1, 4]
 
-// Sample Output-2:
-// ----------------
-// [11, 2, 4, 7, 18, 9, 10, 6, 13]
+Sample Input-2:
+---------------
+11 2 13 4 25 6 -1 -1 -1 7 18 9 10
 
-// */
+Sample Output-2:
+----------------
+[11, 2, 4, 7, 18, 9, 10, 6, 13]
+
+*/
 
 import java.util.*;
 
@@ -62,51 +64,46 @@ class BondaryOfBTNode {
 }
 
 public class SHIELD {
+    public static List<Integer> res = new ArrayList<>();
+
     public List<Integer> compoundWall(BondaryOfBTNode root) {
         // implement your code here.
-        List<Integer> res = new ArrayList<>();
         if (root == null || root.data == -1)
             return res;
         res.add(root.data);
-        leftB(root.left, res);
-        leaves(root.left, res);
-        leaves(root.right, res);
-        rightB(root.right, res);
+        leftB(root.left);
+        leaves(root.left);
+        leaves(root.right);
+        rightB(root.right);
         return res;
     }
 
-    static void leftB(BondaryOfBTNode root, List<Integer> res) {
-        if (root == null || root.data == -1)
+    static void leftB(BondaryOfBTNode root) {
+        if (root == null || root.data == -1 || (root.left == null && root.right == null))
             return;
-        if (root.left != null) {
-            res.add(root.data);
-            leftB(root.left, res);
-        } else if (root.right != null) {
-            res.add(root.data);
-            leftB(root.right, res);
-        }
-
+        res.add(root.data);
+        if (root.left == null || root.data == -1)
+            leftB(root.right);
+        else
+            leftB(root.left);
     }
 
-    static void leaves(BondaryOfBTNode root, List<Integer> res) {
-        if (root == null || root.data == -1)
+    static void rightB(BondaryOfBTNode root) {
+        if (root == null || root.data == -1 || (root.left == null && root.right == null))
             return;
-        leaves(root.left, res);
-        if ((root.left == null || root.left.data == -1)
-                && (root.right == null || root.right.data == -1))
-            res.add(root.data);
-        leaves(root.right, res);
+        if (root.right == null || root.right.data == -1)
+            rightB(root.left);
+        else
+            rightB(root.right);
+        res.add(root.data);
     }
 
-    static void rightB(BondaryOfBTNode root, List<Integer> res) {
+    static void leaves(BondaryOfBTNode root) {
         if (root == null || root.data == -1)
             return;
-        if (root.right != null) {
+        leaves(root.left);
+        if ((root.left == null || root.left.data == -1) && (root.right == null || root.right.data == -1))
             res.add(root.data);
-            rightB(root.right, res);
-        } else if (root.left != null) {
-            res.add(root.data);
-            rightB(root.left, res);
-        }
+        leaves(root.right);
     }
 }
