@@ -41,7 +41,7 @@ No Solution
 
 */
 
-class Solution {
+class NQueens {
     int N;
 
     void solveNQ() {
