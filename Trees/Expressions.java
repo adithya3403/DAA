@@ -1,4 +1,4 @@
-// grade: 25/100
+// grade: 75/100
 
 /*
 
@@ -57,43 +57,29 @@ class Expressions {
     public String[] convert(String S) {
         // Implement your logic here.
         List<String> res = new ArrayList<>();
-        int n = S.length(), i = 0;
-        while (i < n) {
-            if (S.charAt(i) == '[') {
-                int j = i + 1;
-                while (j < n && S.charAt(j) != ']') {
-                    j++;
-                }
-                String[] strs = S.substring(i + 1, j).split(",");
-                if (res.size() == 0) {
-                    for (String str : strs) {
-                        res.add(str);
-                    }
-                } else {
-                    List<String> tmp = new ArrayList<>();
-                    for (String str : strs) {
-                        for (String s : res) {
-                            tmp.add(s + str);
-                        }
-                    }
-                    res = tmp;
-                }
-                i = j + 1;
-            } else {
-                if (res.size() == 0) {
-                    res.add(S.substring(i, i + 1));
-                } else {
-                    for (int j = 0; j < res.size(); j++) {
-                        res.set(j, res.get(j) + S.substring(i, i + 1));
-                    }
-                }
-                i++;
+        dfs(S, 0, new StringBuilder(), res);
+        return res.toArray(new String[0]);
+    }
+
+    void dfs(String S, int i, StringBuilder sb, List<String> res) {
+        if (i == S.length()) {
+            res.add(sb.toString());
+            return;
+        }
+        if (S.charAt(i) == '[') {
+            int j = i + 1;
+            while (S.charAt(j) != ']')
+                j++;
+            String[] strs = S.substring(i + 1, j).split(",");
+            for (String str : strs) {
+                sb.append(str);
+                dfs(S, j + 1, sb, res);
+                sb.setLength(sb.length() - str.length());
             }
+        } else {
+            sb.append(S.charAt(i));
+            dfs(S, i + 1, sb, res);
+            sb.setLength(sb.length() - 1);
         }
-        String[] ans = new String[res.size()];
-        for (int j = 0; j < res.size(); j++) {
-            ans[j] = res.get(j);
-        }
-        return ans;
     }
 }
