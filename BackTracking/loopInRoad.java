@@ -50,8 +50,60 @@ No Solution
 
 */
 
-class Solution {
-    void loopInRoadmap(int graph[][]) {
+class loopInRoad{
+    static int V;
+    int[] path;
+
+    int loopInRoadmap(int graph[][]) {
         // Implement your logic here.
+        path = new int[V];
+        for (int i = 0; i < V; i++)
+            path[i] = -1;
+        path[0] = 0;
+        if (loop(graph, path, 1) == false) {
+            System.out.println("No Solution");
+            return 0;
+        }
+        print(path);
+        return 1;
+    }
+
+    boolean loop(int[][] graph, int[] path, int pos) {
+        if (pos == V) {
+            int getPathVal = path[pos - 1];
+            if (graph[getPathVal][path[0]] == 1)
+                return true;
+            else
+                return false;
+        }
+        for (int v = 1; v < V; v++) {
+            if (isSafe(v, graph, path, pos)) {
+                path[pos] = v;
+                if (loop(graph, path, pos + 1) == true)
+                    return true;
+                path[pos] = -1;
+            }
+        }
+        return false;
+    }
+
+    boolean isSafe(int v, int[][] graph, int path[], int pos) {
+        int getPathVal = path[pos - 1];
+        print(path);
+        if (graph[getPathVal][v] == 0)
+            return false;
+        for (int i = 0; i < pos; i++) {
+            if (path[i] == v) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    void print(int[] path) {
+        for (int i = 0; i < V; i++) {
+            System.out.print(" " + path[i] + " ");
+        }
+        System.out.print(" " + path[0] + " ");
     }
 }
