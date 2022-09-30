@@ -55,7 +55,7 @@ Sample Output-2:
 
 */
 
-class Solution {
+class Vehicles {
     public int findDistance(int[] p, int[] v) {
         return Math.abs(p[0] - v[0]) + Math.abs(p[1] - v[1]);
     }
