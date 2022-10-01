@@ -68,7 +68,7 @@ The unique patterns are as follows:
 
 import java.util.*;
 
-class Solution {
+class UniquePatterns {
     public int numUniquePatterns(int[][] board) {
         // Implement your code here
         Set<String> set = new HashSet<>();
