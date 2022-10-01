@@ -1,5 +1,3 @@
-// grade : 50/100
-
 /*
 
 Naresh is working on expression of words.
@@ -52,34 +50,43 @@ Sample Output-3:
 */
 
 import java.util.*;
-
-class ExpressionsV2 {
-    public String[] convert(String S) {
-        // Implement your logic here.
-        List<String> res = new ArrayList<>();
-        dfs(S, 0, new StringBuilder(), res);
-        return res.toArray(new String[0]);
-    }
-
-    void dfs(String S, int i, StringBuilder sb, List<String> res) {
-        if (i == S.length()) {
-            res.add(sb.toString());
-            return;
-        }
-        if (S.charAt(i) == '[') {
-            int j = i + 1;
-            while (S.charAt(j) != ']')
-                j++;
-            String[] strs = S.substring(i + 1, j).split(",");
-            for (String str : strs) {
-                sb.append(str);
-                dfs(S, j + 1, sb, res);
-                sb.setLength(sb.length() - str.length());
-            }
-        } else {
-            sb.append(S.charAt(i));
-            dfs(S, i + 1, sb, res);
-            sb.setLength(sb.length() - 1);
-        }
-    }
+public class ExpressionsV2 {
+	public String[] convert(String S) {
+		List<String> res = new ArrayList<>();
+		dfs(S, 0, new StringBuilder(), res);   
+		String[] out = new String[res.size()];
+		for (int i = 0; i < res.size(); i++) { 
+			out[i] = res.get(i); 
+		}		
+		return out;
+	}
+	void dfs(String s, int index, StringBuilder sb, List<String> res) {
+		if (index == s.length()) {
+			if (sb.length() > 0) { 
+				res.add(sb.toString()); 
+			}
+			return;
+		}
+		char c = s.charAt(index);
+		int position = sb.length();
+		if (c == '[') {
+			List<Character> charList = new ArrayList<>();
+			int endIndex = index + 1;
+			while (endIndex < s.length() && s.charAt(endIndex) != ']') { 
+				if (Character.isLetter(s.charAt(endIndex))) {
+					charList.add(s.charAt(endIndex)); 
+				}
+				endIndex++; 
+			}    
+			Collections.sort(charList);
+			for (char d : charList) {
+				sb.append(d);
+				dfs(s, endIndex + 1, sb, res);
+				sb.setLength(position);
+			}
+		} else if (Character.isLetter(c)) {
+			sb.append(s.charAt(index));
+			dfs(s, index + 1, sb, res);    
+		}
+	}
 }
