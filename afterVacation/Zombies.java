@@ -70,19 +70,19 @@ And 8 and -6 meet, -6 will die, 8 is alive.
 
 import java.util.*;
 
-class Solution {
+class Zombies {
     public int[] zombiesFighters(int[] people) {
         // Implement the logic here.
-        Stack<Integer> st = new Stack<Integer>();
+        Stack<Integer> st = new Stack<>();
         for (int i = 0; i < people.length; i++) {
-            if (people[i] < 0) {
+            if (people[i] > 0)
                 st.push(people[i]);
-            } else {
-                while (!st.isEmpty() && Math.abs(st.peek()) < people[i])
+            else {
+                while (!st.isEmpty() && st.peek() > 0 && st.peek() < -people[i])
                     st.pop();
-                if (st.isEmpty() || st.peek() > 0)
+                if (st.isEmpty() || st.peek() < 0)
                     st.push(people[i]);
-                else if (Math.abs(st.peek()) == people[i])
+                else if (st.peek() == -people[i])
                     st.pop();
             }
         }
