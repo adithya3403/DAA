@@ -77,7 +77,7 @@ class ItemsIntoBuilding2 {
         // implement this method only
         Arrays.sort(items);
         int res = 0;
-        for (int i = items.length - 1, j = 0, k = rooms.length - 1; i >= 0; i--) {
+        for (int i = items.length - 1, j = 0, k = rooms.length - 1; i >= 0 && j <= k; i--) {
             if (items[i] <= rooms[j]) {
                 res++;
                 j++;
