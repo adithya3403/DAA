@@ -1,3 +1,5 @@
+// Grade: 87.5 / 100 (Test Case 4 failed)
+
 /*
 
 Mr. Dharma went to D-mart, and picked a basket with a capacity C.
@@ -111,31 +113,68 @@ class Solution {
         Arrays.sort(arr, new Comparator<Item>() {
             @Override
             public int compare(Item o1, Item o2) {
-                float r1 = (float) o1.value / o1.weight;
-                float r2 = (float) o2.value / o2.weight;
-                if (r1 < r2)
-                    return 1;
-                else if (r1 > r2)
-                    return -1;
-                return 0;
+                return (int) (o2.value / o2.weight - o1.value / o1.weight);
             }
         });
-        float totalVal = 0f;
-        for (Item i : arr) {
-            int curVal = (int) i.value;
-            float curWt = (float) i.weight;
-            if (capacity - curWt >= 0) {
-                capacity = capacity - curWt;
-                totalVal += curVal;
-                if (capacity == 0)
-                    break;
-            } else {
-                float fraction = ((float) capacity / (float) curWt);
-                totalVal += (curVal * fraction);
-                capacity = (float) (capacity - (curWt * fraction));
-                break;
-            }
+        Node root = new Node();
+        root.level = 0;
+        root.tv = 0;
+        root.tw = 0;
+        root.flag = false;
+        root.lb = 0;
+        root.ub = 0;
+        for (int i = 0; i < size; i++) {
+            root.ub += arr[i].value;
         }
-        System.out.println((int) totalVal);
+        PriorityQueue<Node> pq = new PriorityQueue<>(new Comparator<Node>() {
+            @Override
+            public int compare(Node o1, Node o2) {
+                return (int) (o2.ub - o1.ub);
+            }
+        });
+        pq.add(root);
+        int max = 0;
+        while (!pq.isEmpty()) {
+            Node curr = pq.poll();
+            if (curr.level == size)
+                continue;
+            if (curr.ub < max)
+                break;
+            Node left = new Node(curr);
+            left.level++;
+            left.flag = false;
+            left.tw += arr[left.level - 1].weight;
+            left.tv += arr[left.level - 1].value;
+            left.lb = left.tv;
+            if (left.tw <= capacity) {
+                if (left.tv > max)
+                    max = (int) left.tv;
+                left.ub = bound(left, arr);
+                if (left.ub > max)
+                    pq.add(left);
+            }
+            Node right = new Node(curr);
+            right.level++;
+            right.flag = true;
+            right.lb = right.tv;
+            right.ub = bound(right, arr);
+            if (right.ub > max)
+                pq.add(right);
+        }
+        System.out.println(max);
+    }
+
+    float bound(Node node, Item arr[]) {
+        float res = node.tv;
+        float cap = capacity - node.tw;
+        int i = node.level;
+        while (i < size && arr[i].weight <= cap) {
+            cap -= arr[i].weight;
+            res += arr[i].value;
+            i++;
+        }
+        if (i < size)
+            res += arr[i].value * cap / arr[i].weight;
+        return res;
     }
 }
