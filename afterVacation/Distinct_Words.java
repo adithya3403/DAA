@@ -39,8 +39,6 @@ Sample Output-2:
 
 */
 
-import java.util.*;
-
 class Distinct_Words {
     public int numDistinctWords(String S) {
         // Implement your code here.
