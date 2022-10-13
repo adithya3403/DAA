@@ -50,11 +50,23 @@ class digital_clock {
         List<String> res = new ArrayList<>();
         for (int h = 0; h < 12; h++) {
             for (int m = 0; m < 60; m++) {
-                if (Integer.bitCount(h) + Integer.bitCount(m) == num) {
+                if (countOnes(h) + countOnes(m) == num) {
                     res.add(String.format("%d:%02d", h, m));
+                } else {
+                    continue;
                 }
             }
         }
         return res;
+    }
+
+    static int countOnes(int n) {
+        String bin = Integer.toBinaryString(n);
+        int count = 0;
+        for (int i : bin.toCharArray()) {
+            if (i == '1')
+                count++;
+        }
+        return count;
     }
 }
