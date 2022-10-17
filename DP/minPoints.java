@@ -62,12 +62,13 @@ Start at index-1:
 class minPoints {
     public int minPointsToSpend(int[] points) {
         // implement your code here.
-        int p = points.length;
-        int[] arr = new int[p];
-        arr[0] = points[0];
-        arr[1] = points[1];
-        for (int i = 2; i < p; i++)
-            arr[i] = points[i] + Math.min(arr[i - 1], arr[i - 2]);
-        return Math.min(arr[p - 1], arr[p - 2]);
+        int n = points.length;
+        int[] dp = new int[n];
+        dp[0] = points[0];
+        dp[1] = points[1];
+        for (int i = 2; i < n; i++) {
+            dp[i] = Math.min(dp[i - 1], dp[i - 2]) + points[i];
+        }
+        return Math.min(dp[n - 1], dp[n - 2]);
     }
 }
