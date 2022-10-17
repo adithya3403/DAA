@@ -59,7 +59,7 @@ Start at index-1:
 
 */
 
-class Solution {
+class minPoints {
     public int minPointsToSpend(int[] points) {
         // implement your code here.
         int p = points.length;
