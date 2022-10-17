@@ -61,13 +61,13 @@ Travelling route is: 0 -> 1 -> 3 -> 4 -> 2 -> 0
 
 import java.util.*;
 
-class Solution {
+class TSMP {
     int N;
     int final_res = Integer.MAX_VALUE; // final_res is the minimum cost.
     int final_path[];
     boolean visited[];
 
-    Solution(int N) {
+    TSMP(int N) {
         this.N = N;
         final_path = new int[N + 1];
         visited = new boolean[N];
