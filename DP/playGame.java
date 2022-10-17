@@ -51,7 +51,7 @@ Explanation:
 
 */
 
-class Solution {
+class playGame {
     public int completeLevels(int n) {
         // implement your code here.
         int[] dp = new int[n + 2];
