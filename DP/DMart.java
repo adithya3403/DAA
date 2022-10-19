@@ -67,7 +67,8 @@ class Dmart {
         for (int i = 1; i <= N; i++) {
             for (int j = 1; j <= C; j++) {
                 if (quantity[i - 1] <= j) {
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - quantity[i - 1]] + cost[i - 1]);
+                    int prev = j - quantity[i - 1];
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][prev] + cost[i - 1]);
                 } else {
                     dp[i][j] = dp[i - 1][j];
                 }
