@@ -4,17 +4,20 @@
 // Input: 19 23 2 5 7 9 11 13 Output: 1
 
 import java.util.*;
+
 public class sp05 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Vector<Integer> v = new Vector<>();
-        while (sc.hasNext())
-            v.add(sc.nextInt());
-        int minH = Collections.min(v);
-        int maxH = Collections.max(v);
+        String[] s = sc.nextLine().split(" ");
+        List<Integer> l = new ArrayList<>();
+        for (String i : s)
+            l.add(Integer.parseInt(i));
+        int minH = Collections.min(l);
+        int maxH = Collections.max(l);
         System.out.println(gcd(minH, maxH));
         sc.close();
     }
+
     static int gcd(int a, int b) {
         if (b == 0)
             return a;
