@@ -66,47 +66,29 @@ Sample Output-2:
 import java.util.*;
 
 public class sp10 {
-    public static void main(String[] args) {
+    public static int minEatingSpeed(int[] piles, int H) {
+        int left = 1, right = Arrays.stream(piles).max().getAsInt();
+        while (left < right) {
+            int total = 0, mid = (left + right) / 2;
+            for (int p : piles)
+                total += (p + mid - 1) / mid;
+            if (total > H)
+                left = mid + 1;
+            else
+                right = mid;
+        }
+        return left;
+    }
+
+    public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         String[] str = sc.nextLine().split(" ");
-        int n = str.length;
-        int[] box = new int[n];
-        for (int i = 0; i < n; i++) {
-            box[i] = Integer.parseInt(str[i]);
+        int[] arr = new int[str.length];
+        for (int i = 0; i < str.length; i++) {
+            arr[i] = Integer.parseInt(str[i]);
         }
-        int t = sc.nextInt();
-        System.out.println(minSpeed(box, t));
+        int H = sc.nextInt();
+        System.out.println(minEatingSpeed(arr, H));
         sc.close();
-    }
-
-    static int maximum(int[] arr) {
-        int max = arr[0];
-        for (int i : arr) {
-            if (i > max) {
-                max = i;
-            }
-        }
-        return max;
-    }
-
-    static int minSpeed(int[] box, int t) {
-        int l = 1, r = maximum(box);
-        while (l < r) {
-            int mid = (l + r) / 2;
-            if (isMin(box, t, mid)) {
-                r = mid;
-            } else {
-                l = mid + 1;
-            }
-        }
-        return l;
-    }
-
-    static boolean isMin(int[] box, int t, int mid) {
-        int h = 0;
-        for (int i = 0; i < box.length; i++) {
-            h += (box[i] + mid - 1) / mid;
-        }
-        return h <= t;
     }
 }
