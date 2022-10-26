@@ -48,22 +48,27 @@ public class sp11 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String[] words = sc.nextLine().split(" ");
-        System.out.println(longestCommonPrefix(words));
+        System.out.println(longestCommonPrefix(words, 0, words.length - 1));
         sc.close();
     }
 
-    public static String longestCommonPrefix(String[] words) {
-        HashMap<String, Integer> map = new LinkedHashMap<>();
-        for (String word : words) {
-            for (int i = 0; i < word.length(); i++) {
-                String prefix = word.substring(0, i + 1);
-                map.put(prefix, map.getOrDefault(prefix, 0) + 1);
-            }
+    static String longestCommonPrefix(String[] words, int l, int r) {
+        if (l == r)
+            return words[l];
+        else {
+            int mid = (l + r) / 2;
+            String lcpLeft = longestCommonPrefix(words, l, mid);
+            String lcpRight = longestCommonPrefix(words, mid + 1, r);
+            return commonPrefix(lcpLeft, lcpRight);
         }
-        String ans = "";
-        for (String key : map.keySet())
-            if (map.get(key) == words.length)
-                ans = key;
-        return ans;
+    }
+
+    static String commonPrefix(String left, String right) {
+        int min = Math.min(left.length(), right.length());
+        for (int i = 0; i < min; i++) {
+            if (left.charAt(i) != right.charAt(i))
+                return left.substring(0, i);
+        }
+        return left.substring(0, min);
     }
 }
