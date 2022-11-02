@@ -62,8 +62,6 @@ The BST is:
 
 */
 
-import java.util.*;
-
 class Solution {
     int minSearchCostBST(int data[], int amount[], int n) {
         // implement your code here.
