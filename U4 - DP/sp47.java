@@ -1,3 +1,5 @@
+// sp47 OBST
+
 /*
 
 You are given N nodes of a Binary search tree. To serach a node in 
@@ -62,7 +64,7 @@ The BST is:
 
 */
 
-class Solution {
+class sp47 {
     int minSearchCostBST(int data[], int amount[], int n) {
         // implement your code here.
         int dp[][] = new int[n + 1][n + 1];
