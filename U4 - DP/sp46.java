@@ -62,7 +62,7 @@ Cost = 18 + 20 + 18 = 56
 
 */
 
-class Dmart {
+class sp46 {
     int maximumCost(int[] cost, int[] quantity, int N, int C) {
         // implement your code here.
         int[][] dp = new int[N + 1][C + 1];
