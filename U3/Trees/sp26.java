@@ -63,18 +63,17 @@ class BinaryTreeNode {
 }
 
 */
-class Solution {
+
+class sp26 {
     public boolean isBalanced(BinaryTreeNode root) {
         // Implement Your Code here..
         if (root == null)
             return true;
         int lh = height(root.left);
         int rh = height(root.right);
-        if (Math.abs(lh - rh) <= 1) {
-            if (isBalanced(root.left) && isBalanced(root.right)) {
+        if (Math.abs(lh - rh) <= 1)
+            if (isBalanced(root.left) && isBalanced(root.right))
                 return true;
-            }
-        }
         return false;
     }
 
@@ -83,9 +82,7 @@ class Solution {
             return 0;
         return 1 + Math.max(height(root.left), height(root.right));
     }
-}
 
-public class sp26 {
     static BinaryTreeNode root;
     static BinaryTreeNode temp = root;
 
@@ -103,13 +100,11 @@ public class sp26 {
         while (!q.isEmpty()) {
             temp = q.peek();
             q.remove();
-
             if (temp.left == null) {
                 temp.left = new BinaryTreeNode(key);
                 break;
             } else
                 q.add(temp.left);
-
             if (temp.right == null) {
                 temp.right = new BinaryTreeNode(key);
                 break;
@@ -125,8 +120,7 @@ public class sp26 {
         root = new BinaryTreeNode(Integer.parseInt(str[0]));
         for (int i = 1; i < str.length; i++)
             st.insert(root, Integer.parseInt(str[i]));
-        Solution sol = new Solution();
-        System.out.println(sol.isBalanced(root));
+        System.out.println(st.isBalanced(root));
         sc.close();
     }
 }
