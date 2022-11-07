@@ -1,5 +1,3 @@
-// Grade: 75/100
-
 // sp49 LRS
 
 /*
@@ -63,22 +61,17 @@ public class sp49 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String s = sc.next();
-        System.out.println(maxSub(s));
+        System.out.println(LRS(s));
         sc.close();
     }
 
-    static int maxSub(String s) {
-        int n = s.length();
-        int[][] dp = new int[n + 1][n + 1];
+    public static int LRS(String s) {
         int max = 0;
-        for (int i = 1; i <= n; i++) {
-            for (int j = i + 1; j <= n; j++) {
-                if (s.charAt(i - 1) == s.charAt(j - 1)) {
-                    dp[i][j] = dp[i - 1][j - 1] + 1;
-                    if (dp[i][j] > max && j - i + 1 <= dp[i][j]) {
-                        max = dp[i][j];
-                    }
-                }
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i + 1; j < s.length(); j++) {
+                String x = s.substring(i, j);
+                if (s.indexOf(x) != s.lastIndexOf(x))
+                    max = Math.max(max, x.length());
             }
         }
         return max;
