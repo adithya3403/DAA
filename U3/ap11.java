@@ -1,5 +1,3 @@
-// GRADE: 40/100
-
 // ap11 toggle sequence
 
 /*
@@ -78,22 +76,21 @@ public class ap11 {
         int[] nums = new int[arr.length];
         for (int i = 0; i < arr.length; i++)
             nums[i] = Integer.parseInt(arr[i]);
-        int max = 0;
-        for (int i = 0; i < nums.length; i++) {
-            int count = 1;
-            int prev = nums[i];
-            for (int j = i + 1; j < nums.length; j++) {
-                if (nums[j] - prev > 0 && count % 2 == 0) {
-                    count++;
-                    prev = nums[j];
-                } else if (nums[j] - prev < 0 && count % 2 == 1) {
-                    count++;
-                    prev = nums[j];
-                }
-            }
-            max = Math.max(max, count);
-        }
-        System.out.println(max + 1);
+        System.out.println(longestToggleSequence(nums));
         sc.close();
+    }
+
+    static int longestToggleSequence(int[] nums) {
+        int n = nums.length;
+        if (n < 2)
+            return n;
+        int pos = 1, neg = 1;
+        for (int i = 1; i < n; i++) {
+            if (nums[i] > nums[i - 1])
+                pos = neg + 1;
+            if (nums[i] < nums[i - 1])
+                neg = pos + 1;
+        }
+        return Math.max(neg, pos);
     }
 }
